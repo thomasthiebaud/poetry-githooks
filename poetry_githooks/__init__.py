@@ -27,10 +27,16 @@ def setup():
     hooks.write_all()
 
 
-@cli.command()
-def pre_commit():
-    script = hooks.get_script("pre-commit")
-    return helpers.execute_script(script)
+@cli.command(context_settings=dict(ignore_unknown_options=True))
+@click.option(
+    "--name",
+    type=click.Choice(settings.VALID_HOOKS_NAME),
+    help="Name of the hook to run",
+)
+@click.argument("args", nargs=-1, type=click.UNPROCESSED)
+def run(name, args):
+    script = hooks.get_script(name)
+    return helpers.execute_script(script, args)
 
 
 if __name__ == "__main__":

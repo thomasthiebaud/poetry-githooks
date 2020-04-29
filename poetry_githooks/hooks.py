@@ -1,6 +1,7 @@
 import toml
 import click
 import os
+import sys
 
 from poetry_githooks import settings, helpers
 
@@ -51,7 +52,7 @@ def write(hook: str):
         hook_file.write(
             f"""#!/bin/bash
 
-poetry run githooks {hook} $@
+poetry run githooks run --name {hook} $@
         """
         )
 

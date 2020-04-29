@@ -3,6 +3,7 @@ import sys
 import stat
 import os
 import toml
+import shlex
 
 from poetry_githooks import settings
 
@@ -26,6 +27,11 @@ def make_executable(path):
     os.chmod(path, st.st_mode | stat.S_IEXEC)
 
 
-def execute_script(script: str):
-    return_code = subprocess.call(f"{script}", shell=True)
+def execute_script(script: str, args=None):
+    if args is not None:
+        command = " ".join(shlex.split(shlex.quote(script)) + list(args))
+    else:
+        command = shlex.quote(script)
+
+    return_code = subprocess.call(command, shell=True)
     sys.exit(return_code)
