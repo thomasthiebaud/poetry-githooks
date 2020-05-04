@@ -45,20 +45,38 @@ def read():
         yield (hook, script)
 
 
+def reset():
+    for hook in settings.VALID_HOOKS_NAME:
+        hook_path = os.path.join(settings.GITHOOKS_DIR, hook)
+
+        try:
+            with open(hook_path, "r+") as hook_file:
+                if settings.SIGNATURE in hook_file.read():
+                    hook_file.truncate(0)
+                    hook_file.close()
+                    os.remove(hook_path)
+        except FileNotFoundError:
+            pass
+
+
 def write(hook: str):
     hook_path = os.path.join(settings.GITHOOKS_DIR, hook)
 
-    with open(hook_path, "w+") as hook_file:
-        hook_file.write(
-            f"""#!/bin/bash
+    if os.path.isfile(hook_path):
+        click.echo(f"{hook} already exists. Skipping setup")
+    else:
+        with open(hook_path, "w+") as hook_file:
+            hook_file.write(
+                f"""#!/bin/bash
+{settings.SIGNATURE}
+poetry run githooks run --name {hook} $@"""
+            )
 
-poetry run githooks run --name {hook} $@
-        """
-        )
-
-    helpers.make_executable(hook_path)
+        helpers.make_executable(hook_path)
 
 
 def write_all():
+    reset()
+
     for (hook, script) in read():
         write(hook)

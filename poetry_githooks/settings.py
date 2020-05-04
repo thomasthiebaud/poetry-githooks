@@ -6,6 +6,8 @@ GIT_DIR = os.path.join(BASE_DIR, ".git")
 GITHOOKS_DIR = os.path.join(GIT_DIR, "hooks")
 CONFIG_FILE = os.path.join(BASE_DIR, "pyproject.toml")
 
+SIGNATURE = "# created with poetry-githooks"
+
 # List from https://git-scm.com/docs/githooks#_hooks
 VALID_HOOKS_NAME = [
     "applypatch-msg",  # 1 parameter
