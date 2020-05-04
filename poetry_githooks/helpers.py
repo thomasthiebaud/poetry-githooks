@@ -4,19 +4,29 @@ import stat
 import os
 import toml
 import shlex
+import click
 
 from poetry_githooks import settings
 
 
+def info(message):
+    click.echo(click.style(message, fg="green"))
+
+
+def error(message):
+    click.echo(click.style(message, fg="red"))
+
 def read_config():
     if not os.path.isfile(settings.CONFIG_FILE):
-        click.echo("Missing 'pyproject.toml'. Run 'poetry init' to setup a project")
+        error(
+            "Missing 'pyproject.toml'. Run 'poetry init' to setup a project"
+        )
         sys.exit(1)
 
     try:
         config = toml.load(settings.CONFIG_FILE)
     except toml.TomlDecodeError:
-        click.echo("pyproject.toml file is malformed and could not be read")
+        error("pyproject.toml file is malformed and could not be read")
         sys.exit(1)
 
     return config

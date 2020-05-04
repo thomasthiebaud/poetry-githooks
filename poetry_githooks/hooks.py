@@ -12,7 +12,7 @@ def _get_raw_hooks():
     try:
         hooks = config["tool"]["githooks"]
     except KeyError:
-        click.echo(
+        helpers.error(
             "No hooks found. Add a [tool.githooks] section to your pyproject.toml"
         )
         sys.exit(1)
@@ -26,7 +26,7 @@ def get_script(hook: str):
     try:
         script = hooks[hook]
     except KeyError:
-        click.echo(
+        helpers.error(
             f"No hooks called {hook} found. Add a [tool.githooks] section to your pyproject.toml with the desired hook"
         )
         sys.exit(1)
@@ -39,7 +39,7 @@ def read():
 
     for hook, script in hooks.items():
         if hook not in settings.VALID_HOOKS_NAME:
-            click.echo(f"'{hook}' is not a valid hook")
+            helpers.error(f"'{hook}' is not a valid hook")
             sys.exit(1)
 
         yield (hook, script)
@@ -63,7 +63,7 @@ def write(hook: str):
     hook_path = os.path.join(settings.GITHOOKS_DIR, hook)
 
     if os.path.isfile(hook_path):
-        click.echo(f"{hook} already exists. Skipping setup")
+        helpers.info(f"Skiping {hook} setup because {hook_path} already exists")
     else:
         with open(hook_path, "w+") as hook_file:
             hook_file.write(
