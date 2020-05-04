@@ -2,8 +2,7 @@
 
 ## Install
 
-This repository is made to work with (poetry)[https://python-poetry.org/]
-Assuming you have a working `poetry` setup, run
+This repository is made to work with [poetry](https://python-poetry.org/). Assuming you have a working `poetry` setup, run
 
 ```
 poetry add -D poetry-githooks
@@ -24,6 +23,6 @@ then run
 poetry run githooks setup
 ```
 
-That's it :tada: your hooks will be run using `poetry` when expected
+That's it :tada: your hooks will be ran using `poetry` when expected
 
 **IMPORTANT** You need to rerun `poetry run githooks setup` everytime you change `[tool.githooks]`
