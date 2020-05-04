@@ -36,6 +36,7 @@ def setup():
 @click.argument("args", nargs=-1, type=click.UNPROCESSED)
 def run(name, args):
     script = hooks.get_script(name)
+    helpers.info(f"Running {name} hook")
     return helpers.execute_script(script, args)
 
 
