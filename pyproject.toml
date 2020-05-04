@@ -33,7 +33,7 @@ black = "^19.10b0"
 githooks = "poetry_githooks:cli"
 
 [tool.githooks]
-pre-merge-commit = "black . --check"
+pre-commit = "black . --check"
 
 [build-system]
 requires = ["poetry>=0.12"]

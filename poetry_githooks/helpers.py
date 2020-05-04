@@ -16,11 +16,10 @@ def info(message):
 def error(message):
     click.echo(click.style(message, fg="red"))
 
+
 def read_config():
     if not os.path.isfile(settings.CONFIG_FILE):
-        error(
-            "Missing 'pyproject.toml'. Run 'poetry init' to setup a project"
-        )
+        error("Missing 'pyproject.toml'. Run 'poetry init' to setup a project")
         sys.exit(1)
 
     try:
