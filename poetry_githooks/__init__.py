@@ -39,6 +39,11 @@ def run(name, args):
     helpers.info(f"Running {name} hook")
     return helpers.execute_script(script, args)
 
+@cli.command()
+@click.option("--force", '-f', is_flag=True)
+def reset(force):
+    return hooks.reset(force)
+
 
 if __name__ == "__main__":
     cli()
