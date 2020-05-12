@@ -24,11 +24,10 @@ def read_config():
 
     try:
         config = toml.load(settings.CONFIG_FILE)
+        return config
     except toml.TomlDecodeError:
         error("pyproject.toml file is malformed and could not be read")
         sys.exit(1)
-
-    return config
 
 
 def make_executable(path):
@@ -38,9 +37,9 @@ def make_executable(path):
 
 def execute_script(script: str, args=None):
     if args is not None:
-        command = " ".join(shlex.split(shlex.quote(script)) + list(args))
+        command = " ".join([script] + [shlex.quote(arg) for arg in args])
     else:
-        command = shlex.quote(script)
+        command = script
 
     return_code = subprocess.call(command, shell=True)
     sys.exit(return_code)

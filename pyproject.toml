@@ -28,9 +28,15 @@ click = "^7.1.2"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
+pytest = "^5.4.2"
+mamba = "^0.11.0"
+taskipy = "^1.2.1"
 
 [tool.poetry.scripts]
 githooks = "poetry_githooks:cli"
+
+[tool.taskipy.tasks]
+test = "mamba --format=documentation tests/*"
 
 [tool.githooks]
 pre-commit = "black . --check"
