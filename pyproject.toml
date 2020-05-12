@@ -36,6 +36,8 @@ taskipy = "^1.2.1"
 githooks = "poetry_githooks:cli"
 
 [tool.taskipy.tasks]
+lint = "black ."
+"lint:check" = "black . --check"
 test = "mamba --format=documentation tests/*"
 
 [tool.githooks]

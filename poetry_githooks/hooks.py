@@ -45,7 +45,7 @@ def read():
         yield (hook, script)
 
 
-def reset(force = False):
+def reset(force=False):
     for hook in settings.VALID_HOOKS_NAME:
         hook_path = os.path.join(settings.GITHOOKS_DIR, hook)
 
