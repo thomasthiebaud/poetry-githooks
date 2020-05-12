@@ -1,7 +1,6 @@
 import sys
 from unittest.mock import patch
 import toml
-import pytest
 
 from mamba import context, describe, it
 from poetry_githooks import helpers

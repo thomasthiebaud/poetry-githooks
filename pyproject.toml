@@ -28,7 +28,6 @@ click = "^7.1.2"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
-pytest = "^5.4.2"
 mamba = "^0.11.0"
 taskipy = "^1.2.1"
 
