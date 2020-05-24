@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "poetry-githooks"
-version = "1.0.0"
+version = "1.1.0"
 description = "Simple git hooks with poetry"
 authors = ["Thomas Thiebaud <thiebaud.tom@gmail.com>"]
 license = "MIT"
@@ -28,9 +28,16 @@ click = "^7.1.2"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
+mamba = "^0.11.0"
+taskipy = "^1.2.1"
 
 [tool.poetry.scripts]
 githooks = "poetry_githooks:cli"
+
+[tool.taskipy.tasks]
+lint = "black ."
+"lint:check" = "black . --check"
+test = "mamba --format=documentation tests/*"
 
 [tool.githooks]
 pre-commit = "black . --check"

@@ -45,16 +45,16 @@ def read():
         yield (hook, script)
 
 
-def reset():
+def reset(force=False):
     for hook in settings.VALID_HOOKS_NAME:
         hook_path = os.path.join(settings.GITHOOKS_DIR, hook)
 
         try:
             with open(hook_path, "r+") as hook_file:
-                if settings.SIGNATURE in hook_file.read():
-                    hook_file.truncate(0)
+                if force or settings.SIGNATURE in hook_file.read():
                     hook_file.close()
                     os.remove(hook_path)
+
         except FileNotFoundError:
             pass
 
