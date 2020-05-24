@@ -42,4 +42,4 @@ def execute_script(script: str, args=None):
         command = script
 
     return_code = subprocess.call(command, shell=True)
-    sys.exit(return_code)
+    return return_code
