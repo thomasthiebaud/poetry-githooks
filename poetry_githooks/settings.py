@@ -1,7 +1,7 @@
 import os
 import sys
 
-BASE_DIR = os.path.dirname(os.path.realpath(sys.argv[0]))
+BASE_DIR = os.path.realpath('.')
 GIT_DIR = os.path.join(BASE_DIR, ".git")
 GITHOOKS_DIR = os.path.join(GIT_DIR, "hooks")
 CONFIG_FILE = os.path.join(BASE_DIR, "pyproject.toml")
