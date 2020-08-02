@@ -30,6 +30,7 @@ def setup():
 @cli.command(context_settings=dict(ignore_unknown_options=True))
 @click.option(
     "--name",
+    required=True,
     type=click.Choice(settings.VALID_HOOKS_NAME),
     help="Name of the hook to run",
 )
