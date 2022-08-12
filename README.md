@@ -7,7 +7,9 @@ This repository is made to work with [poetry](https://python-poetry.org/). Assum
 ```
 poetry add -D poetry-githooks
 ```
-
+If your root git directory is not the project directory, define `POETRY_GITHOOKS_GIT_ROOT` environment variable
+and set it to the directory that `.git` resides in.<br>
+(For example, if the path to `.git` is `/somepath/.git`, then you should set `POETRY_GITHOOKS_GIT_ROOT=/somepath/`)
 ## Install
 
 Create a `tool.githooks` section in your `pyproject.toml` file and define your git hooks, for example
