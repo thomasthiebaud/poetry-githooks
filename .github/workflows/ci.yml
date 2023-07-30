@@ -22,9 +22,9 @@ jobs:
       - name: Install dependencies
         run: poetry install -vvv
       - name: Lint with black
-        run: poetry run task lint:check
+        run: poetry run black . --check
       - name: Run tests
-        run: poetry run task test
+        run: poetry run pytest
   release:
     if: ${{ github.ref == 'refs/heads/master' }}
     needs: ci
