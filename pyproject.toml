@@ -28,13 +28,11 @@ toml = "^0.10.2"
 click = "^8.1.6"
 
 [tool.poetry.dev-dependencies]
-black = "^22.12.0"
+black = "^23.7.0"
+pytest = "^7.4.0"
 
 [tool.poetry.scripts]
 githooks = "poetry_githooks:cli"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^7.4.0"
 
 [tool.githooks]
 pre-commit = "black . --check"

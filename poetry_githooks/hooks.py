@@ -78,5 +78,5 @@ poetry run githooks run --name {hook} $@"""
 def write_all():
     reset()
 
-    for (hook, script) in read():
+    for hook, script in read():
         write(hook)
