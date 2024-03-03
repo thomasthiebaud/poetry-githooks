@@ -2,7 +2,7 @@ import os
 import sys
 
 BASE_DIR = os.path.realpath(".")
-GIT_DIR = os.path.join(BASE_DIR, ".git")
+GIT_DIR = os.path.join(os.getenv("POETRY_GITHOOKS_GIT_ROOT", BASE_DIR), ".git")
 GITHOOKS_DIR = os.path.join(GIT_DIR, "hooks")
 CONFIG_FILE = os.path.join(BASE_DIR, "pyproject.toml")
 

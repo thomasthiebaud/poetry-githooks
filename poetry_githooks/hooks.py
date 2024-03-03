@@ -69,6 +69,7 @@ def write(hook: str):
             hook_file.write(
                 f"""#!/bin/bash
 {settings.SIGNATURE}
+cd {settings.BASE_DIR}
 poetry run githooks run --name {hook} $@"""
             )
 
